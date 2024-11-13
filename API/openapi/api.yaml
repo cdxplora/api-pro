@@ -1,0 +1,87 @@
+openapi: 3.1.0
+info:
+  title: Karelia API Course - OpenAPI 3.0 API Programming, IC10025-3001, autumn 2024
+  description: |-
+    This is a sample Pet Store Server based on the OpenAPI 3.0 specification.  You can find out more about
+    
+    Some useful links:
+    - [The Pet Store repository](https://github.com/swagger-api/swagger-petstore)
+    - [The source API definition for the Pet Store](https://github.com/swagger-api/swagger-petstore/blob/master/src/main/resources/openapi.yaml)
+  termsOfService: http://swagger.io/terms/
+  contact:
+    email: apiteam@swagger.io
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.11
+externalDocs:
+  description: Find out more 
+  url: http://swagger.io
+
+security:
+  -bearerAuth: []
+
+servers:
+  - url: http://localhost:3000 
+
+  
+tags:
+  - name: Sample dataset
+    description: Everything you need to know about APIs 
+    externalDocs:
+      description: Find out more
+      url: http://m.karelia.moodle.fi
+  - name: My API
+    description: Still trying to understand what it is
+    externalDocs:
+      description: Find out more from our moodle
+      url: http://swagger.io
+  - name: user
+    description: Operations about user
+paths:
+  /data:
+    get:
+      tags:
+        - Sample dataset
+      summary: Returns a dataset
+      description: Returns a dataset with something more ...
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Data'
+        '415':
+          description: Unsupported media type
+      
+components:
+  schemas:
+    Data:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 123
+        forename:
+          type: integer
+          format: int64
+          example: 198772
+        surname:
+          type: string
+          example: Chioma
+
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+    ApiKeyAuth:
+      type: apiKey
+      in: header 
+     
+
+       
